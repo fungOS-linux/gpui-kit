@@ -20,12 +20,10 @@ workspace = true
 [dependencies]
 anyhow.workspace = true
 gpui.workspace = true
-gpui-fast = { workspace = true, optional = true }
 log.workspace = true
 
 [dev-dependencies]
 gpui_platform.workspace = true
-gpui-fast-platform.workspace = true
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 rust-embed = { version = "8.7.2", features = ["interpolate-folder-path", "include-exclude"] }
@@ -36,4 +34,4 @@ wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"
 
 [features]
-gpui-fast = ["dep:gpui-fast"]
+gpui-fast = []

@@ -15,10 +15,11 @@ edition.workspace = true
 doctest = false
 
 [features]
-gpui-fast = ["dep:gpui-fast", "gpui-base/gpui-fast", "gpui-kit-assets/gpui-fast"]
-test-support = ["gpui/test-support", "gpui-base/test-support", "gpui-fast?/test-support"]
+gpui-fast = []
+chart = []
+test-support = ["gpui/test-support", "gpui-base/test-support"]
 decimal = ["gpui-base/decimal"]
-inspector = ["gpui_macros/inspector", "gpui/inspector", "gpui-base/inspector", "gpui-fast?/inspector"]
+inspector = ["gpui_macros/inspector", "gpui/inspector", "gpui-base/inspector"]
 tree-sitter = ["dep:tree-sitter", "dep:tree-sitter-json"]
 # Syntax highlighting for Markdown, Input and Diff from syntect and bat's
 # syntax collection: about 200 languages for a few megabytes, against tens for
@@ -39,8 +40,7 @@ speech = [
     "objc2-foundation/NSLocale",
     "windows/Foundation_Collections",
     "windows/Globalization",
-    "windows/Media_SpeechRecognition",
-]
+    "windows/Media_SpeechRecognition"]
 
 # For syntax highlighting in Markdown and CodeEditor.
 tree-sitter-languages = [
@@ -78,8 +78,7 @@ tree-sitter-languages = [
     "tree-sitter-tsx",
     "tree-sitter-typescript",
     "tree-sitter-yaml",
-    "tree-sitter-zig",
-]
+    "tree-sitter-zig"]
 tree-sitter-astro = ["tree-sitter", "dep:tree-sitter-astro-next"]
 tree-sitter-bash = ["tree-sitter", "dep:tree-sitter-bash"]
 tree-sitter-c = ["tree-sitter", "dep:tree-sitter-c"]
@@ -124,7 +123,6 @@ similar = { version = "2.7", features = ["unicode"] }
 regex = "1"
 anyhow.workspace = true
 gpui = { workspace = true }
-gpui-fast = { workspace = true, optional = true }
 gpui_macros.workspace = true
 gpui-base.workspace = true
 gpui-component-macros = { workspace = true }
@@ -215,22 +213,19 @@ objc2-app-kit = { version = "0.3", features = [
     "NSWindow",
     "NSResponder",
     "NSEvent",
-    "NSImage",
-] }
+    "NSImage"] }
 objc2-foundation = { version = "0.3", features = ["NSData", "NSString", "NSGeometry"] }
 # Speech input (SystemRecognizer) — SFSpeechRecognizer via objc2.
 block2 = { version = "0.6", optional = true }
 objc2-av-foundation = { version = "0.3", default-features = false, features = [
     "std",
     "AVCaptureDevice",
-    "AVMediaFormat",
-], optional = true }
+    "AVMediaFormat"], optional = true }
 objc2-avf-audio = { version = "0.3", default-features = false, features = [
     "std",
     "AVAudioBuffer",
     "AVAudioFormat",
-    "AVAudioTypes",
-], optional = true }
+    "AVAudioTypes"], optional = true }
 objc2-speech = { version = "0.3", default-features = false, features = [
     "std",
     "block2",
@@ -240,8 +235,7 @@ objc2-speech = { version = "0.3", default-features = false, features = [
     "SFSpeechRecognitionResult",
     "SFSpeechRecognitionTask",
     "SFSpeechRecognizer",
-    "SFTranscription",
-], optional = true }
+    "SFTranscription"], optional = true }
 
 [target.'cfg(target_os = "windows")'.dependencies]
 # Native menu (NativeMenu) — drives Win32 popup menus.
@@ -256,12 +250,10 @@ windows = { workspace = true, features = [
     "Win32_System_LibraryLoader",
     "Win32_System_Memory",
     "Win32_UI_Input_KeyboardAndMouse",
-    "Win32_UI_WindowsAndMessaging",
-] }
+    "Win32_UI_WindowsAndMessaging"] }
 
 [dev-dependencies]
 gpui = { workspace = true, features = ["test-support"] }
-gpui-fast = { workspace = true, features = ["test-support"] }
 indoc = "2"
 
 [lints]

@@ -1,5 +1,3 @@
-#[cfg(feature = "gpui-fast")]
-extern crate gpui_fast as gpui;
 
 use gpui::App;
 use std::ops::Deref;
@@ -35,6 +33,11 @@ pub mod breadcrumb;
 pub mod bubble;
 pub mod button;
 pub mod carousel;
+/// Charts need a plotting layer that the kit's `gpui-fast` path does not carry
+/// against the fungOS fork, and a Spore has no use for one: a Spore draws its own
+/// pixels, not candlesticks. Off by default so the dependency graph a Spore pays
+/// for is the one it uses.
+#[cfg(feature = "chart")]
 pub mod chart;
 pub mod checkbox;
 pub mod clipboard;
