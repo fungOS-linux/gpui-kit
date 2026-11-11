@@ -1,46 +1,24 @@
 [workspace]
-default-members = ["crates/story"]
+# This fork carries the four crates a Spore can use, and nothing that needs a
+# desktop or a browser: the kit's other members assume file dialogs, a webview
+# or a DOM, and the browser platform drags in `wasm_thread`, which has no
+# wasip2 story. Excluded rather than deleted, so upstream merges stay cheap.
 members = [
-    "crates/kit",
     "crates/base",
-    "crates/base/examples/wasm",
-    "crates/base/examples/native",
+    "crates/component",
     "crates/component-macros",
+    "crates/assets",
+]
+exclude = [
+    "crates/kit",
+    "crates/fps",
+    "crates/shell",
     "crates/story",
     "crates/story-web",
-    "crates/component",
-    "crates/assets",
-    "crates/fps",
     "crates/webview",
-    "examples/app_assets",
-    "examples/fps_monitor",
-    "examples/hello_world",
-    "examples/input",
-    "examples/editor",
-    "examples/syntect",
-    "examples/tig",
-    "examples/brush",
-    "examples/dock",
-    "examples/html",
-    "examples/large-text",
-    "examples/markdown",
-    "examples/stream-markdown",
-    "examples/window_title",
-    "examples/dialog_overlay",
-    "examples/webview",
-    "examples/system_monitor",
-    "examples/focus_trap",
-    "examples/tooltip_top_edge",
-    "examples/link_tooltip",
-    "examples/sidebar",
-    "examples/text_max_lines",
-    "examples/text_selection",
-    "examples/touch_selection",
-    "examples/table_in_scrollable",
-    "examples/markdown_table",
-    "examples/ai_recipes",
-    "examples/speech",
-    "crates/shell",
+    "crates/base/examples/wasm",
+    "crates/base/examples/native",
+    "examples",
 ]
 resolver = "2"
 
@@ -72,9 +50,8 @@ gpui_web = { package = "gpui-pre-web", version = "=0.3.12" }
 # Fast is optional; existing crates select it through their gpui-fast feature.
 # Explicit package fields make Cargo use these dependency keys as Rust crate names;
 # the packages declare the same library names as the pre backend.
-gpui-fast = { package = "gpui-fast", version = "0.1.14", features = ["windows-manifest-provided-by-host"] }
-gpui-fast-platform = { package = "gpui-fast-platform", version = "0.1.14", features = ["font-kit", "x11", "wayland", "runtime_shaders"] }
-gpui-fast-web = { package = "gpui-fast-web", version = "0.1.14" }
+gpui-fast = { git = "https://github.com/fungOS-linux/gpui-fast", rev = "60ebb175729ad2a17acf59d8e988e794ff4b7eb4", package = "gpui", default-features = false, features = ["headless"] }
+gpui-fast-platform = { git = "https://github.com/fungOS-linux/gpui-fast", rev = "60ebb175729ad2a17acf59d8e988e794ff4b7eb4", package = "gpui_platform", default-features = false }
 gpui_macros = { package = "gpui-pre-macros", version = "=0.3.12" }
 reqwest_client = { package = "gpui-pre-reqwest-client", version = "=0.3.12" }
 sum-tree = { package = "gpui-pre-sum-tree", version = "=0.3.12" }
