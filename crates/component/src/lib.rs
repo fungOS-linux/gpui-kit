@@ -94,6 +94,7 @@ pub mod tab;
 pub mod table;
 pub mod tag;
 pub mod text;
+pub mod texture_view;
 pub mod theme;
 pub mod toolbar;
 pub mod tooltip;
